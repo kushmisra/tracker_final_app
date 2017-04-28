@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">tracker_final</string>
+    <string name="title_activity_maps">Map</string>
+
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Thought of Losing Me?</string>
+    <string name="slide_1_desc">This is an easy app that helps u find it easily. Works even without wifi :)</string>
+
+
+    <string name="slide_4_title">Welcome Aboard</string>
+    <string name="slide_4_desc">Start your journey towards a carefree and safe future </string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+
+
+</resources>

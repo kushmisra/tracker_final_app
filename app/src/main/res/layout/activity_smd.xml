@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kush.tracker_final.smd"
+    android:background="@drawable/back">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="308dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/tms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="115dp"
+        android:onClick="tms"
+        android:text="track my steps"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="122dp" />
+
+    <Button
+        android:id="@+id/cm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ccm"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="96dp"
+        android:text="chnage music"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="259dp" />
+
+    <Button
+        android:id="@+id/ccm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tms"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp"
+        android:onClick="ccm"
+        android:text="chnage codedmessage"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="407dp" />
+
+    <EditText
+        android:id="@+id/msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ccm"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="35dp"
+        android:alpha="0"
+        android:ems="10"
+        android:hint="play:message"
+        android:inputType="textPersonName"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColorHint="@color/common_google_signin_btn_text_dark_default" />
+
+    <Button
+        android:id="@+id/msgb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/msg"
+        android:layout_toEndOf="@+id/ccm"
+        android:alpha="0"
+        android:onClick="msgb"
+        android:text="save" />
+
+</RelativeLayout>

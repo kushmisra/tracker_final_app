@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kush.tracker_final.hs"
+    android:background="@drawable/helps">
+
+
+    <TextView
+        android:id="@+id/textView7"
+        style="@style/Widget.AppCompat.TextView.SpinnerItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:text="NEVER LOSE"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textDirection="anyRtl"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_un"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColorHint="@color/common_google_signin_btn_text_dark_focused"
+        app:errorEnabled="true"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignTop="@+id/textView7"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="89dp">
+
+        <EditText
+            android:id="@+id/un"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="149dp"
+            android:background="#70ffffff"
+            android:ems="10"
+            android:hint="username"
+            android:inputType="textPersonName"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColorHint="@color/common_google_signin_btn_text_dark_focused" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColorHint="@color/common_google_signin_btn_text_dark_focused"
+        app:errorEnabled="true"
+        android:id="@+id/layout_pw"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/layout_un"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:id="@+id/pw"
+
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+
+            android:layout_centerVertical="true"
+            android:background="#70ffffff"
+            android:ems="10"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textColorHint="@color/common_google_signin_btn_text_dark_focused" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/fu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#90ffffff"
+        android:onClick="fu"
+        android:textSize="20dp"
+        android:text="find user"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="47dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
