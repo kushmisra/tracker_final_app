@@ -2,6 +2,8 @@ package com.example.kush.tracker_final;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
@@ -27,8 +29,11 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import org.json.JSONObject;
 
@@ -62,10 +67,12 @@ public class myservice extends Service {
     boolean playing = false;
 
 
-    private static final int ADMIN_INTENT = 15;
-    private static final String description = "Some Description About Your Admin";
-    private DevicePolicyManager mDevicePolicyManager;
-    private ComponentName mComponentName;
+
+
+//    private static final int ADMIN_INTENT = 15;
+//    private static final String description = "Some Description About Your Admin";
+//    private DevicePolicyManager mDevicePolicyManager;
+//    private ComponentName mComponentName;
 
 
     MediaPlayer mediaPlayer;
@@ -88,37 +95,6 @@ public class myservice extends Service {
     }
 
 
-
-
-
-
-
-    public void lock(){
-
-        Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mComponentName);
-        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,description);
-
-
-        boolean isAdmin = mDevicePolicyManager.isAdminActive(mComponentName);
-        if (isAdmin) {
-            mDevicePolicyManager.lockNow();
-        }else{
-//            Toast.makeText(getApplicationContext(), "Not Registered as admin", Toast.LENGTH_SHORT).show();
-        }
-
-
-    }
-
-
-
-
-
-
-
-
-
-
     private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context ctxt, Intent intent) {
@@ -135,9 +111,9 @@ public class myservice extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        mDevicePolicyManager = (DevicePolicyManager)getSystemService(
-                Context.DEVICE_POLICY_SERVICE);
-        mComponentName = new ComponentName(this, MyAdmin.class);
+//        mDevicePolicyManager = (DevicePolicyManager)getSystemService(
+//                Context.DEVICE_POLICY_SERVICE);
+//        mComponentName = new ComponentName(this, MyAdmin.class);
 
         sharedPreferences = this.getSharedPreferences("com.example.kush.tracker_final", Context.MODE_PRIVATE);
         user = sharedPreferences.getString("USER_NAME", "");
@@ -190,6 +166,7 @@ public class myservice extends Service {
 
     public class aTask extends AsyncTask<Void,Void,Void>{
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         protected Void doInBackground(Void... params) {
 
@@ -230,6 +207,39 @@ public class myservice extends Service {
                             if(playing)
                             stop();
                         }
+
+                        if (Jo.getString("lock").equals("true")){
+
+//                            home.mDPM.lockNow();
+//                            home.mDPM.setDeviceOwnerLockScreenInfo (home.mAdminName,
+//                                    "hello there");
+
+                         try {
+
+
+                             Intent reachedSafely_notification = new Intent(myservice.this, nservice.class);
+                             PendingIntent reachedSafely = PendingIntent.getService(myservice.this, 0, reachedSafely_notification
+                                     , PendingIntent.FLAG_UPDATE_CURRENT );
+
+
+                             RemoteViews remoteView = new RemoteViews(getApplicationContext().getPackageName(), R.layout.rm);
+                             remoteView.setOnClickPendingIntent(R.id.button, reachedSafely);
+
+
+                             NotificationCompat.Builder builder = new NotificationCompat.Builder(myservice.this);
+                             builder.setOngoing(true)
+                                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                                     .setSmallIcon(R.drawable.loginb)
+                                     .setContent(remoteView);
+
+                             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                             notificationManager.notify(0, builder.build());
+
+                         }catch (Exception e){
+                             e.printStackTrace();
+                         }
+                        }
+
                     }
                 }catch (Exception e){
                     e.printStackTrace();
@@ -321,7 +331,7 @@ public class myservice extends Service {
 
     public void startit(){
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        service.scheduleAtFixedRate(new Task(), 0, 10000, TimeUnit.MILLISECONDS);
+        service.scheduleAtFixedRate(new Task(), 0, 3000, TimeUnit.MILLISECONDS);
     }
 
     @Override

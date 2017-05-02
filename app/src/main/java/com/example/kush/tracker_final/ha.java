@@ -2,6 +2,7 @@ package com.example.kush.tracker_final;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -28,9 +29,9 @@ public class ha extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
 
         setContentView(R.layout.activity_ha);
 
@@ -152,5 +153,34 @@ public class ha extends AppCompatActivity {
         RelativeLayout r =(RelativeLayout)findViewById(R.id.rl);
         r.setVisibility(View.INVISIBLE);
     }
+
+    public class lockclass extends AsyncTask<Void,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            Map<String,String> m = new HashMap<>();
+            m.put("secret",hs.secret);
+            JSONObject jsonObject = new JSONObject(m);
+            String url;
+            url = Network.BASE_URL_STRING + "lock";
+            Response res = Network.postRequest(getApplicationContext(),jsonObject.toString(),url);
+            if(res == null){
+                Log.i("res", "doInBackground: recieved null ");
+            }else{
+                Log.i("res", "recieved ookay" );
+            }
+
+            return null;
+        }
+    }
+
+    public void lock(View v){
+
+        new lockclass().execute();
+
+    }
+
+
 
 }

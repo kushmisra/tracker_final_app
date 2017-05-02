@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="69dp">
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_margin="0dp"
+        android:text="pls call this contact"
+        android:layout_height="match_parent" />
+    <Button
+        android:layout_margin="0dp"
+        android:layout_width="120dp"
+        android:id="@+id/button"
+        android:text="call"
+        android:layout_height="match_parent" />
+</LinearLayout>

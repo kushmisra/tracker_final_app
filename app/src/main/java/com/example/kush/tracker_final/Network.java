@@ -33,7 +33,7 @@ public class Network {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
-    public static final String BASE_URL_STRING = "https://desolate-depths-12509.herokuapp.com/";
+    public static final String BASE_URL_STRING = "http://192.168.1.106:3000/";
 
 
     public static Response getRequest(Context ctx, String url_string){
@@ -52,6 +52,7 @@ public class Network {
             ex.printStackTrace();
             return null;
         }
+
     }
 
 
