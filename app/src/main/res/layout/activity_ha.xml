@@ -20,6 +20,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:onClick="tom"
+        android:tag="bell"
         app:srcCompat="@drawable/bell"
         android:layout_alignTop="@+id/sm"
         android:layout_alignStart="@+id/cb" />
@@ -126,6 +127,7 @@
             android:layout_height="100dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:layout_gravity="center_horizontal"
 
             android:layout_weight="1"
             android:onClick="lock"
@@ -136,6 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+            android:gravity="center_horizontal"
             android:text="LOCK"
             android:textSize="25dp" />
 
@@ -146,41 +149,41 @@
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rl"
-        android:background="#90ffffff">
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/rl"-->
+        <!--android:background="#90ffffff">-->
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/button2"
-            android:layout_alignParentStart="true">
-            <EditText
-                android:id="@+id/mt"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="35dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Name" />
-        </android.support.design.widget.TextInputLayout>
-
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="21dp"
-            android:onClick="send"
-            android:text="send" />
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_above="@+id/button2"-->
+            <!--android:layout_alignParentStart="true">-->
+            <!--<EditText-->
+                <!--android:id="@+id/mt"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="60dp"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_marginStart="35dp"-->
+                <!--android:ems="10"-->
+                <!--android:inputType="textPersonName"-->
+                <!--android:hint="Name" />-->
+        <!--</android.support.design.widget.TextInputLayout>-->
 
 
-    </RelativeLayout>
+        <!--<Button-->
+            <!--android:id="@+id/button2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginEnd="21dp"-->
+            <!--android:onClick="send"-->
+            <!--android:text="send" />-->
+
+
+    <!--</RelativeLayout>-->
 
 </RelativeLayout>

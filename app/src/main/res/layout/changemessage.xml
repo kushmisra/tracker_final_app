@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:src="@drawable/msg"
+        android:layout_width="match_parent"
+        android:id="@+id/imgv"
+        android:layout_height="64dp"
+        android:scaleType="center"
+        android:background="#FFFFBB33"
+        android:contentDescription="@string/app_name" />
+    <TextView
+        android:layout_width="match_parent"
+        android:text="Please enter the \n new coded message "
+        android:textSize="20dp"
+        android:id="@+id/tv"
+        android:layout_height="match_parent" />
+    <android.support.design.widget.TextInputLayout
+        app:errorEnabled="true"
+        android:id="@+id/input"
+
+
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColorHint="@android:color/background_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        >
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:background="#73000000"
+            android:hint="Enter coded message"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColorHint="@android:color/background_light"
+            android:textColorLink="?android:attr/colorPressedHighlight" />
+    </android.support.design.widget.TextInputLayout>
+</LinearLayout>

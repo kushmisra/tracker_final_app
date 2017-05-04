@@ -34,15 +34,19 @@ public class signup extends AppCompatActivity {
 
     private TextInputLayout inputLayoutName, inputLayoutEmail, inputLayoutPassword,inputLayoutmob;
 
-
+    @Override
+    public void onBackPressed() {
+        this.finish();
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_signup);
 
@@ -174,6 +178,7 @@ public class signup extends AppCompatActivity {
                      username.length()>0 && password.length()>0){
                 Intent i = new Intent(signup.this,home.class);
                 startActivity(i);
+                signup.this.finish();
             }
             super.onPostExecute(aVoid);
         }
@@ -185,6 +190,7 @@ public class signup extends AppCompatActivity {
 //
         Intent i = new Intent(signup.this,login.class);
         startActivity(i);
+        signup.this.finish();
         finish();
     }
 

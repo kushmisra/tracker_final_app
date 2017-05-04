@@ -1,5 +1,6 @@
 package com.example.kush.tracker_final;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -35,13 +36,24 @@ public class hs extends AppCompatActivity {
 //    String secret =" ";
     public static String secret = "";
     boolean proceed = false;
+
+    public void logout(View v){
+        SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.kush.tracker_final", Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString("secret","1").apply();
+        Intent i = new Intent(this , Welcome.class);
+        startActivity(i);
+        hs.this.finish();
+
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_hs);
 
@@ -169,6 +181,7 @@ public class hs extends AppCompatActivity {
                 proceed = false;
                 Intent i = new Intent(hs.this,ha.class);
                 startActivity(i);
+                hs.this.finish();
             }else{
                 Toast.makeText(hs.this, "not a valid user", Toast.LENGTH_SHORT).show();
             }

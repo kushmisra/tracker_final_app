@@ -11,15 +11,18 @@ import android.app.PendingIntent;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
@@ -27,6 +30,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -45,19 +49,16 @@ import java.io.File;
 
 public class home extends AppCompatActivity {
 
-
     static DevicePolicyManager mDPM;
     static ComponentName mAdminName;
     int REQUEST_ENABLE =100;
-
     private TextInputLayout inputLayoutmsg;
     TextView tv2;
     SharedPreferences sharedPreferences;
     String transmit;
     ImageView iv1,iv2,iv3,control;
     Animation a;
-    EditText msg ;
-
+//    EditText msg ;
     private boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
@@ -74,29 +75,29 @@ public class home extends AppCompatActivity {
 
 
 // code for notification
-        Intent reachedSafely_notification = new Intent(getApplicationContext(), nservice.class);
-        PendingIntent reachedSafely = PendingIntent.getService(getApplicationContext(), 0, reachedSafely_notification
-                , 0);
-
-
-        RemoteViews remoteView = new RemoteViews(getApplicationContext().getPackageName(), R.layout.rm);
-        remoteView.setOnClickPendingIntent(R.id.button, reachedSafely);
-
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
-        builder.setOngoing(true)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setSmallIcon(R.drawable.loginb)
-                .setContent(remoteView);
-
-        NotificationManager notificationManageri = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManageri.notify(0, builder.build());
+//        Intent reachedSafely_notification = new Intent(getApplicationContext(), nservice.class);
+//        PendingIntent reachedSafely = PendingIntent.getService(getApplicationContext(), 0, reachedSafely_notification
+//                , 0);
+//
+//
+//        RemoteViews remoteView = new RemoteViews(getApplicationContext().getPackageName(), R.layout.rm);
+//        remoteView.setOnClickPendingIntent(R.id.button, reachedSafely);
+//
+//
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
+//        builder.setOngoing(true)
+//                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+//                .setSmallIcon(R.drawable.loginb)
+//                .setContent(remoteView);
+//
+//        NotificationManager notificationManageri = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//        notificationManageri.notify(0, builder.build());
 
 // code ends
 
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_home);
 
@@ -119,54 +120,85 @@ public class home extends AppCompatActivity {
         }
 
 
-        msg = (EditText)findViewById(R.id.message);
+//        msg = (EditText)findViewById(R.id.message);
 
-        RelativeLayout rv = (RelativeLayout)findViewById(R.id.rv);
-        rv.setVisibility(View.INVISIBLE);
-        sharedPreferences = this.getSharedPreferences("com.example.kush.tracker_final", Context.MODE_PRIVATE);
-        transmit = sharedPreferences.getString("transmit","gjhchjchj");
-        tv2 = (TextView)findViewById(R.id.textView2);
-        tv2.setText("welcome "+sharedPreferences.getString("USER_NAME",""));
-        TextView tv8 = (TextView)findViewById(R.id.textView8);
-        tv8.setText(getDeviceName());
-        a = AnimationUtils.loadAnimation(home.this,R.anim.images);
-        inputLayoutmsg = (TextInputLayout) findViewById(R.id.input_layout_msg);
-        msg.addTextChangedListener(new home.MyTextWatcher(msg));
-        iv1 = (ImageView)findViewById(R.id.iv1);
-        iv2 = (ImageView)findViewById(R.id.iv2);
-        iv3 = (ImageView)findViewById(R.id.iv3);
-        control = (ImageView) findViewById(R.id.control);
-
-        iv1.setAlpha(0f);
-        iv2.setAlpha(0f);
-        iv3.setAlpha(0f);
-
-
-        Log.i("res", "onCreate: "+transmit.toString());
+//        RelativeLayout rv = (RelativeLayout)findViewById(R.id.rv);
+//        rv.setVisibility(View.INVISIBLE);
         try {
-//            Intent intent = new Intent(getApplicationContext(), home.class);
-//            PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext()
-//                    , 1, intent, 0);
+            sharedPreferences = this.getSharedPreferences("com.example.kush.tracker_final", Context.MODE_PRIVATE);
+            transmit = sharedPreferences.getString("transmit", "gjhchjchj");
+            tv2 = (TextView) findViewById(R.id.textView2);
+            tv2.setText("Welcome " + sharedPreferences.getString("USER_NAME", ""));
+            TextView tv8 = (TextView) findViewById(R.id.textView8);
+            tv8.setText(getDeviceName());
+            a = AnimationUtils.loadAnimation(home.this, R.anim.images);
+//        inputLayoutmsg = (TextInputLayout) findViewById(R.id.input_layout_msg);
+//            msg.addTextChangedListener(new home.MyTextWatcher(msg));
+            iv1 = (ImageView) findViewById(R.id.iv1);
+            iv2 = (ImageView) findViewById(R.id.iv2);
+            iv3 = (ImageView) findViewById(R.id.iv3);
+
+            iv1.setVisibility(View.INVISIBLE);
+            iv3.setVisibility(View.INVISIBLE);
+            iv2.setVisibility(View.INVISIBLE);
+            control = (ImageView) findViewById(R.id.control);
+
+            iv1.setAlpha(0f);
+            iv2.setAlpha(0f);
+            iv3.setAlpha(0f);
+
+
+            Log.i("res", "onCreate: " + transmit.toString());
+            try {
+                Intent intent = new Intent(getApplicationContext(), home.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext()
+                        , 1, intent, 0);
+
+                Notification note = new Notification.Builder(getApplicationContext())
+                        .setContentTitle("NEVER LOSE")
+                        .setContentText("transmitting in safe mode")
+                        .setContentIntent(pendingIntent)
+                        .setOngoing(true)
+                        .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                        .build();
+
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+                notificationManager.notify(1, note);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+//        tel telephonyInfo = tel.getInstance(this);
 //
-//            Notification note = new Notification.Builder(getApplicationContext())
-//                    .setContentTitle("NEVER LOSE")
-//                    .setContentText("transmitting in safe mode")
-//                    .setContentIntent(pendingIntent)
-//                    .setOngoing(true)
-//                    .setSmallIcon(android.R.drawable.sym_def_app_icon)
-//                    .build();
-//
-//            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//
-//            notificationManager.notify(1, note);
+//        if(telephonyInfo.isDualSIM()){
+//            Toast.makeText(this, "dual sim dude", Toast.LENGTH_SHORT).show();
+//            Log.i("tel", "onCreate: 9999999999999999999999999999999999999999999999999999");
+//        }
         }catch (Exception e){
             e.printStackTrace();
         }
+            startit();
 
-        startit();
 
     }
 
+    public void logout(View v){
+//        SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.kush.tracker_final", Context.MODE_PRIVATE);
+        stopService(new Intent(getApplicationContext(), myservice.class));
+        NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        nm.cancelAll();
+        sharedPreferences.edit().putString("secret","1").apply();
+        Intent i = new Intent(this , Welcome.class);
+        startActivity(i);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.finish();
+        super.onBackPressed();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -235,8 +267,13 @@ public class home extends AppCompatActivity {
 
     public void control(View v){
 
-        if(iv1.getAlpha() == 0f) {
+        ImageView iv = (ImageView)findViewById(R.id.logout);
 
+        if(iv1.getAlpha() == 0f) {
+            iv.setVisibility(View.INVISIBLE);
+            iv1.setVisibility(View.VISIBLE);
+            iv3.setVisibility(View.VISIBLE);
+            iv2.setVisibility(View.VISIBLE);
 
 
 //synpit to play music from the device
@@ -245,7 +282,7 @@ public class home extends AppCompatActivity {
 
             if(root.listFiles().length >0){
 
-                getall(root);
+               // getall(root);
 
 
             }else{
@@ -274,6 +311,10 @@ public class home extends AppCompatActivity {
             iv3.setAlpha(0f);
             iv2.setAlpha(0f);
             iv1.setAlpha(0f);
+            iv1.setVisibility(View.INVISIBLE);
+            iv3.setVisibility(View.INVISIBLE);
+            iv2.setVisibility(View.INVISIBLE);
+            iv.setVisibility(View.VISIBLE);
         }
 
     }
@@ -308,63 +349,64 @@ public class home extends AppCompatActivity {
         }
     }
 
-    public void save(View v){
+    public void save(String s){
 
-        if(msg.getText().toString().contains(":")) {
+        if(s.contains(":")) {
 
-            String type = msg.getText().toString().split(":")[0];
-            String mssg = msg.getText().toString().split(":")[1];
+            String type = s.split(":")[0];
+            String mssg = s.split(":")[1];
             if (type.equals("play")) {
                 var.play = mssg;
                 Toast.makeText(this, "saved changes to play", Toast.LENGTH_SHORT).show();
-
-                tv2.setVisibility(View.VISIBLE);
-                Button hs = (Button) findViewById(R.id.hs);
-                hs.setVisibility(View.VISIBLE);
-                LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
-                ll.setVisibility(View.VISIBLE);
-                RelativeLayout rv = (RelativeLayout) findViewById(R.id.rv);
-                rv.setVisibility(View.INVISIBLE);
-                ImageView iv9 =(ImageView)findViewById(R.id.iv9);
-                iv9.setVisibility(View.VISIBLE);
+//
+//                tv2.setVisibility(View.VISIBLE);
+//                Button hs = (Button) findViewById(R.id.hs);
+//                hs.setVisibility(View.VISIBLE);
+//                LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
+//                ll.setVisibility(View.VISIBLE);
+//                RelativeLayout rv = (RelativeLayout) findViewById(R.id.rv);
+//                rv.setVisibility(View.INVISIBLE);
+//                ImageView iv9 =(ImageView)findViewById(R.id.iv9);
+//                iv9.setVisibility(View.VISIBLE);
 
             } else if (type.equals("noplay")) {
                 var.noplay = mssg;
                 Toast.makeText(this, "saved changes to noplay", Toast.LENGTH_SHORT).show();
 
-                tv2.setVisibility(View.VISIBLE);
-                Button hs = (Button) findViewById(R.id.hs);
-                hs.setVisibility(View.VISIBLE);
-                LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
-                ll.setVisibility(View.VISIBLE);
-                RelativeLayout rv = (RelativeLayout) findViewById(R.id.rv);
-                rv.setVisibility(View.INVISIBLE);
-                ImageView iv9 =(ImageView)findViewById(R.id.iv9);
-                iv9.setVisibility(View.VISIBLE);
+//                tv2.setVisibility(View.VISIBLE);
+//                Button hs = (Button) findViewById(R.id.hs);
+//                hs.setVisibility(View.VISIBLE);
+//                LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
+//                ll.setVisibility(View.VISIBLE);
+//                RelativeLayout rv = (RelativeLayout) findViewById(R.id.rv);
+//                rv.setVisibility(View.INVISIBLE);
+//                ImageView iv9 =(ImageView)findViewById(R.id.iv9);
+//                iv9.setVisibility(View.VISIBLE);
 
 
             } else {
-                inputLayoutmsg.setError("enter coded message properly");
-                requestFocus(msg);
+//                inputLayoutmsg.setError("enter coded message properly");
+//                requestFocus(msg);
+                  Toast.makeText(this, "please change to a valid string ", Toast.LENGTH_SHORT).show();
             }
         }else{
-            inputLayoutmsg.setError("enter coded message properly");
-            requestFocus(msg);
+//            inputLayoutmsg.setError("enter coded message properly");
+//            requestFocus(msg);
         }
 
     }
 
-    private boolean validatemsg() {
-        if (msg.getText().toString().trim().isEmpty()) {
-            inputLayoutmsg.setError("enter coded message");
-            requestFocus(msg);
-            return false;
-        } else {
-            inputLayoutmsg.setError(null);
-        }
-
-        return true;
-    }
+//    private boolean validatemsg() {
+//        if (msg.getText().toString().trim().isEmpty()) {
+//            inputLayoutmsg.setError("enter coded message");
+//            requestFocus(msg);
+//            return false;
+//        } else {
+//            inputLayoutmsg.setError(null);
+//        }
+//
+//        return true;
+//    }
 
     private void requestFocus(View view) {
         if (view.requestFocus()) {
@@ -372,48 +414,92 @@ public class home extends AppCompatActivity {
         }
     }
 
-    public class MyTextWatcher implements TextWatcher {
-
-        private View view;
-
-        private MyTextWatcher(View view) {
-            this.view = view;
-        }
-
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        }
-
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        }
-
-        public void afterTextChanged(Editable editable) {
-            switch (view.getId()) {
-                case R.id.msg:
-                    validatemsg();
-                    break;
-
-
-            }
-        }
-    }
+//    public class MyTextWatcher implements TextWatcher {
+//
+//        private View view;
+//
+//        private MyTextWatcher(View view) {
+//            this.view = view;
+//        }
+//
+//        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//        }
+//
+//        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//        }
+//
+//        public void afterTextChanged(Editable editable) {
+//            switch (view.getId()) {
+//                case R.id.msg:
+//                    validatemsg();
+//                    break;
+//
+//
+//            }
+//        }
+//    }
 
 
     public void cm(View v){
 
-        tv2.setVisibility(View.INVISIBLE);
-        ImageView iv9 =(ImageView)findViewById(R.id.iv9);
-        iv9.setVisibility(View.INVISIBLE);
-        Button hs = (Button)findViewById(R.id.hs);
-        hs.setVisibility(View.INVISIBLE);
-        LinearLayout ll = (LinearLayout)findViewById(R.id.ll);
-        ll.setVisibility(View.INVISIBLE);
-        RelativeLayout rv = (RelativeLayout)findViewById(R.id.rv);
-        rv.setVisibility(View.VISIBLE);
+//        tv2.setVisibility(View.INVISIBLE);
+//        ImageView iv9 =(ImageView)findViewById(R.id.iv9);
+//        iv9.setVisibility(View.INVISIBLE);
+//        Button hs = (Button)findViewById(R.id.hs);
+//        hs.setVisibility(View.INVISIBLE);
+//        LinearLayout ll = (LinearLayout)findViewById(R.id.ll);
+//        ll.setVisibility(View.INVISIBLE);
+//        RelativeLayout rv = (RelativeLayout)findViewById(R.id.rv);
+//        rv.setVisibility(View.VISIBLE);
+
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(home.this);
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        final View addView=getLayoutInflater().inflate(R.layout.changemessage, null);
+
+
+        builder.setView(addView);
+
+        builder.setPositiveButton("change", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+
+                EditText e =(EditText)addView.findViewById(R.id.username);
+                String s = e.getText().toString();
+                if(s.contains(":") &&((s.split(":")[0].equals("play")||s.split(":")[0].equals("noplay")))){
+                    save(s);
+                    dialog.dismiss();
+
+                }else{
+                    inputLayoutmsg = (TextInputLayout)addView.findViewById(R.id.input);
+                    inputLayoutmsg.setError("enter coded message properly");
+                    requestFocus(e);
+
+                }
+            }
+
+        });
+        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        try {
+            dialog.show();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
 
     }
 
     public void settings(View v){
+
+        Intent i = new Intent(home.this,settings.class);
+        startActivity(i);
 
     }
 

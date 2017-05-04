@@ -5,91 +5,140 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.kush.tracker_final.home"
-    android:background="@drawable/home1">
+    android:background="@drawable/backhp1">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/iv9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/help"
-        android:layout_centerVertical="true"
-        android:layout_alignEnd="@+id/hs" />
+        android:layout_weight="1"
+        android:layout_width="30dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"/>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="TextView"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/textView8" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="20dp"
-        android:text="TextView"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/textView2"
+            android:text="TextView"
+            android:gravity="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="20dp" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/hs"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:background="@color/common_google_signin_btn_text_light_focused"
-        android:onClick="hs"
-        android:text="help someone"
-        android:textColor="?attr/colorButtonNormal"
-        android:layout_below="@+id/iv9"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="13dp" />
+
+</LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:layout_above="@+id/textView4"
+        android:layout_alignParentStart="true">
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_gravity="center"
+            android:layout_height="100dp">
+                <ImageView
+                        android:id="@+id/iv9"
+                        android:layout_gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:srcCompat="@drawable/find"/>
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/phone"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp" />
+        </RelativeLayout>
+
+        <Button
+                android:id="@+id/hs"
+                android:layout_width="100dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:background="@color/common_google_signin_btn_text_light_focused"
+                android:onClick="hs"
+                android:text="help someone"
+                android:textColor="?attr/colorButtonNormal"
+                android:layout_below="@+id/iv9"
+                android:layout_centerHorizontal="true" />
+
+    </LinearLayout>
+
+
+
+
 
     <LinearLayout
         android:id="@+id/ll"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_below="@+id/textView8"
-        android:layout_toEndOf="@+id/textView8"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="63dp">
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
 
 
         <ImageView
             android:id="@+id/iv1"
-
+            android:layout_weight="1"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
             android:onClick="settings"
             android:src="@drawable/settings" />
 
         <ImageView
             android:id="@+id/iv2"
-
+            android:layout_weight="1"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
             android:onClick="cm"
             android:src="@drawable/msg" />
 
         <ImageView
             android:id="@+id/iv3"
-
+            android:layout_weight="1"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
             android:onClick="map"
             android:src="@drawable/map" />
 
@@ -97,78 +146,95 @@
             android:id="@+id/control"
             android:layout_width="80dp"
             android:layout_height="80dp"
-
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:onClick="control"
-            android:src="@drawable/plus" />
+            android:src="@drawable/control" />
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="17dp"
-            android:textColor="@android:color/darker_gray"
-            android:gravity="center_horizontal"
-            android:text="MY DATA" />
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#99000000"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="My Section"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="30dp"
+        android:layout_above="@+id/ll"
+        android:layout_centerHorizontal="true" />
 
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="save"
-
-            android:src="@drawable/save" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_centerVertical="true"
-            android:background="#50ffffff"
-            android:fontFamily="cursive"
-            android:text="Please enter the coded messgae here
-             for changing playing message type
-             play:your message
-             and for changing non playing message type
-             noplay:your message"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textColorHint="@color/common_google_signin_btn_text_dark_focused"
-            android:textSize="20dp" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_msg"
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_marginTop="450dp"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            android:textColorHint="@color/common_google_signin_btn_text_dark_focused"
-            app:errorEnabled="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true">
-
-            <EditText
-                android:id="@+id/message"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:alpha="1"
-                android:background="#50ffffff"
-                android:hint="type your message in the format specified"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textColorHint="@android:color/background_dark" />
-        </android.support.design.widget.TextInputLayout>
+    <ImageView
+        android:id="@+id/logout"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="26dp"
+        android:onClick="logout"
+        app:srcCompat="@drawable/logout" />
 
 
-    </RelativeLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/rv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#99000000"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentStart="true">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imageView8"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:onClick="save"-->
+
+            <!--android:src="@drawable/save" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/textView5"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="200dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:background="#50ffffff"-->
+            <!--android:fontFamily="cursive"-->
+            <!--android:text="Please enter the coded messgae here-->
+             <!--for changing playing message type-->
+             <!--play:your message-->
+             <!--and for changing non playing message type-->
+             <!--noplay:your message"-->
+            <!--android:textColor="@color/common_google_signin_btn_text_dark_focused"-->
+            <!--android:textColorHint="@color/common_google_signin_btn_text_dark_focused"-->
+            <!--android:textSize="20dp" />-->
+
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/input_layout_msg"-->
+            <!--android:layout_width="match_parent"-->
+
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="450dp"-->
+            <!--android:textColor="@color/common_google_signin_btn_text_dark_focused"-->
+            <!--android:textColorHint="@color/common_google_signin_btn_text_dark_focused"-->
+            <!--app:errorEnabled="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_alignParentStart="true">-->
+
+            <!--<EditText-->
+                <!--android:id="@+id/message"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="60dp"-->
+                <!--android:alpha="1"-->
+                <!--android:background="#50ffffff"-->
+                <!--android:hint="type your message in the format specified"-->
+                <!--android:textColor="@color/common_google_signin_btn_text_dark_focused"-->
+                <!--android:textColorHint="@android:color/background_dark" />-->
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+
+    <!--</RelativeLayout>-->
 
 </RelativeLayout>

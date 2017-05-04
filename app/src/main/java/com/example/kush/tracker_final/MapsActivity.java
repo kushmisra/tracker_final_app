@@ -112,7 +112,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             LatLng sydney = new LatLng(latitudeA.get(i-1), longitudeA.get(i-1));
 
             mMap.addMarker(new MarkerOptions().position(sydney).icon(BitmapDescriptorFactory.fromResource(android.R.drawable.ic_dialog_map)));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitudeA.get(latitudeA.size()-1),longitudeA.get(latitudeA.size()-1)),70));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitudeA.get(latitudeA.size()-1),longitudeA.get(latitudeA.size()-1)),50));
 
 
 

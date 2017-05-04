@@ -30,4 +30,27 @@
         android:layout_alignParentTop="true"
         android:layout_toStartOf="@+id/textView" />
 
+    <TextView
+        android:id="@+id/connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_marginStart="33dp"
+        android:text="connecting"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="30sp"
+        tools:text="connecting" />
+
+    <TextView
+        android:id="@+id/connect2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/connect"
+        android:text="..."
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="38sp"
+        tools:text="..." />
+
 </RelativeLayout>

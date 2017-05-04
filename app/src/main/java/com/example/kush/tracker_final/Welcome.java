@@ -111,20 +111,25 @@ public class Welcome extends AppCompatActivity {
         pass = true;
     }
 
+    TextView connect2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
         setContentView(R.layout.activity_welcome);
+
         sharedPreferences = this.getSharedPreferences("com.example.kush.tracker_final", Context.MODE_PRIVATE);
         final TextView tv = (TextView)findViewById(R.id.textView);
+        connect2 = (TextView)findViewById(R.id.connect2);
         final Animation a1 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.welcome_animation);
         final Animation a2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.welcome2_animation);
         tv.setAnimation(a1);
+        connect2.setAnimation(a1);
 //        tv.startAnimation(a1);
 
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
@@ -133,10 +138,11 @@ public class Welcome extends AppCompatActivity {
                 || ContextCompat.checkSelfPermission(this,Manifest.permission.READ_SMS)!= PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(this,Manifest.permission.SEND_SMS)!= PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE)!=PackageManager.PERMISSION_DENIED
+                || ContextCompat.checkSelfPermission(this,Manifest.permission.READ_PHONE_STATE)!= PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(this,Manifest.permission.BIND_DEVICE_ADMIN)!= PackageManager.PERMISSION_GRANTED){
             pass = false;
             ActivityCompat.requestPermissions(Welcome.this , new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET
-            ,Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.CALL_PHONE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.READ_SMS,Manifest.permission.SEND_SMS,Manifest.permission.BIND_DEVICE_ADMIN},1);
+            ,Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.READ_PHONE_STATE,Manifest.permission.CALL_PHONE,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.READ_SMS,Manifest.permission.SEND_SMS,Manifest.permission.BIND_DEVICE_ADMIN},1);
         }
         a1.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -154,19 +160,24 @@ public class Welcome extends AppCompatActivity {
 
                 if (ACTION == NOT_DECIDED){
                     tv.startAnimation(a2);
+                    connect2.startAnimation(a2);
                 }else if(ACTION == USER_FOUND){
                     Intent i = new Intent(getApplicationContext(),home.class);
                     if(pass) {
                         startActivity(i);
+                        Welcome.this.finish();
                     }else{
                         tv.startAnimation(a2);
+                        connect2.startAnimation(a2);
                     }
                 }else if(ACTION == NO_USER){
                     Intent i = new Intent(getApplicationContext(),beforelogin.class);
                     if(pass){
                         startActivity(i);
+                        Welcome.this.finish();
                     }else{
                         tv.startAnimation(a2);
+                        connect2.startAnimation(a2);
                     }
                 }else if(ACTION == NO_CONNECTION){
                     Toast.makeText(Welcome.this, "no connection", Toast.LENGTH_SHORT).show();
@@ -193,19 +204,24 @@ public class Welcome extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 if (ACTION == NOT_DECIDED){
                     tv.startAnimation(a1);
+                    connect2.startAnimation(a1);
                 }else if(ACTION == USER_FOUND){
                     Intent i = new Intent(getApplicationContext(),home.class);
                     if(pass) {
                         startActivity(i);
+                        Welcome.this.finish();
                     }else{
                         tv.startAnimation(a1);
+                        connect2.startAnimation(a1);
                     }
                 }else if(ACTION == NO_USER){
                     Intent i = new Intent(getApplicationContext(),beforelogin.class);
                      if(pass){
                         startActivity(i);
+                         Welcome.this.finish();
                      }else{
                          tv.startAnimation(a1);
+                         connect2.startAnimation(a1);
                      }
 
                 }else if(ACTION == NO_CONNECTION){

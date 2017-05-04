@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/RL"
+        android:onClick="clicked"
+        android:layout_margin="10dp"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:id="@+id/image"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_toRightOf="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="SAMPLE TEXT"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="30dp" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

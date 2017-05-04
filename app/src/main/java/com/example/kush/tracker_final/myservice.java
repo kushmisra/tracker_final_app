@@ -111,6 +111,7 @@ public class myservice extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+
 //        mDevicePolicyManager = (DevicePolicyManager)getSystemService(
 //                Context.DEVICE_POLICY_SERVICE);
 //        mComponentName = new ComponentName(this, MyAdmin.class);
@@ -210,30 +211,44 @@ public class myservice extends Service {
 
                         if (Jo.getString("lock").equals("true")){
 
-//                            home.mDPM.lockNow();
-//                            home.mDPM.setDeviceOwnerLockScreenInfo (home.mAdminName,
-//                                    "hello there");
+                            try {
+                                home.mDPM.lockNow();
 
+
+//                                home.mDPM.setDeviceOwnerLockScreenInfo(home.mAdminName,
+//                                        "hello there");
+
+                                int sdk = android.os.Build.VERSION.SDK_INT;
+                                if(sdk >= Build.VERSION_CODES.M)
+                                {
+                                    home.mDPM.setDeviceOwnerLockScreenInfo(home.mAdminName,
+                                        "hello there");
+                                }
+
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                          try {
 
 
-                             Intent reachedSafely_notification = new Intent(myservice.this, nservice.class);
-                             PendingIntent reachedSafely = PendingIntent.getService(myservice.this, 0, reachedSafely_notification
-                                     , PendingIntent.FLAG_UPDATE_CURRENT );
+                             Intent reachedSafely_notification = new Intent(getApplicationContext(), nservice.class);
+                             PendingIntent reachedSafely = PendingIntent.getService(getApplicationContext(), 0, reachedSafely_notification
+                                     , 0);
 
 
                              RemoteViews remoteView = new RemoteViews(getApplicationContext().getPackageName(), R.layout.rm);
                              remoteView.setOnClickPendingIntent(R.id.button, reachedSafely);
 
 
-                             NotificationCompat.Builder builder = new NotificationCompat.Builder(myservice.this);
+                             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
                              builder.setOngoing(true)
                                      .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                                     .setSmallIcon(R.drawable.loginb)
+                                     .setSmallIcon(R.drawable.logo)
                                      .setContent(remoteView);
 
-                             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                             notificationManager.notify(0, builder.build());
+                             NotificationManager notificationManageri = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                             notificationManageri.notify(0, builder.build());
 
                          }catch (Exception e){
                              e.printStackTrace();
@@ -290,11 +305,16 @@ public class myservice extends Service {
 
                         if(strbody.equals(var.play)){
 
-                            if(!playing)
+                            if(!playing) {
                                 VolumeUp();
+                                playing= true;
+                                number = 6;
+                            }
                         }else if(strbody.equals(var.noplay) ){
                             if(playing){
                                 stop();
+                                playing=false;
+                                number = 9;
                             }
                         }
                         smsBuilder.append("[ ");

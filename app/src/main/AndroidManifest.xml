@@ -10,8 +10,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -56,23 +55,25 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".hs" />
-        <activity android:name=".ha" />
+        <activity
+            android:name=".ha"
+            android:theme="@style/AppTheme" />
         <activity android:name=".beforelogin" />
-        <activity android:name=".signup"></activity>
+        <activity android:name=".signup" />
 
         <receiver
             android:name=".MyAdmin"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
-                android:resource="@xml/admin"/>
+                android:resource="@xml/admin" />
 
             <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
 
-
+        <activity android:name=".settings"></activity>
     </application>
 
 </manifest>
